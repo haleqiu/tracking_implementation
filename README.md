@@ -29,11 +29,22 @@ This repository serves as a template for building projects or extensions based o
 
 ```bash
 # Enter the repository
-cd whole_body_tracking
+cd whole_body_tracking && mkdir source/whole_body_tracking/whole_body_tracking/assets
 # Rename all occurrences of whole_body_tracking (in files/directories) to your_fancy_extension_name
 curl -L -o unitree_description.tar.gz https://storage.googleapis.com/qiayuanl_robot_descriptions/unitree_description.tar.gz && \
 tar -xzf unitree_description.tar.gz -C source/whole_body_tracking/whole_body_tracking/assets/ && \
 rm unitree_description.tar.gz
+```
+
+- Create the assets `__init__.py` file to define the ASSET_DIR constant:
+
+```bash
+cat > source/whole_body_tracking/whole_body_tracking/assets/__init__.py << 'EOF'
+import os
+
+# Get the directory where this __init__.py file is located
+ASSET_DIR = os.path.dirname(os.path.abspath(__file__))
+EOF
 ```
 
 - Using a python interpreter that has Isaac Lab installed, install the library
